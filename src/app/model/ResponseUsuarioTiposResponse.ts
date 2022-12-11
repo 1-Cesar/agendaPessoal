@@ -1,6 +1,6 @@
 import { UsuarioTiposResponse } from './UsuarioTiposResponse';
 
-export class ResponseTiposResponse {
+export class ResponseUsuarioTiposResponse {
     public message: string
     public object: UsuarioTiposResponse
 }

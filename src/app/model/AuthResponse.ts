@@ -1,7 +1,7 @@
 export class AuthResponse {
     public accessToken: string
     public id: number
-    public tipo: string[]
+    public tipos: string[]
     public tokenType: string
     public username: string
 }
