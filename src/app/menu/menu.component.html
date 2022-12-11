@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark bg-dark fixed-top">  
     <div class="container-fluid">
-
+      
       <div class="d-flex align-items-center">
         <img src="https://i.imgur.com/Mn3W7Pq.jpg" alt="foto do usuário" width="50px" height="50px" class="img-fluid rounded-circle">
         <p style="color: aliceblue;" class="m-0 p-1 fs-16">Nome do usuário</p>
@@ -12,26 +12,27 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="offcanvas offcanvas-end text-bg-dark w-auto p-4" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">        
+      <div class="offcanvas offcanvas-end text-bg-dark w-auto p-4" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>        
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" data-bs-dismiss="offcanvas">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Meu cadastro</a>
+              <a class="nav-link" data-bs-dismiss="offcanvas">Meu cadastro</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Usuários</a>
+                <a class="nav-link" routerLink="/cadastrar" data-bs-dismiss="offcanvas">Usuários</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pessoas</a>
+                <a class="nav-link" data-bs-dismiss="offcanvas">Pessoas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Contatos</a>
+                <a class="nav-link" data-bs-dismiss="offcanvas">Contatos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" data-bs-dismiss="offcanvas">Logout</a>
             </li>            
           </ul>         
         </div>
