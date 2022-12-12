@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment.prod';
 import { ResponseUsuarioTiposResponse } from './../model/ResponseUsuarioTiposResponse';
 import { AuthResponse } from './../model/AuthResponse';
 import { UsuarioTiposResponse } from './../model/UsuarioTiposResponse';
@@ -19,5 +20,15 @@ export class AuthService {
 
   cadastrar(usuarioTiposResponse: UsuarioTiposResponse):Observable<UsuarioTiposResponse> {    
     return this.http.post<UsuarioTiposResponse>('https://metawaydemo.vps-kinghost.net:8485/api/usuario/salvar', usuarioTiposResponse)    
+  }
+
+  logado() {
+    let ok: boolean = false
+
+    if(environment.token != '') {
+      ok = true
+    }
+
+    return ok
   }
 }

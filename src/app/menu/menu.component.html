@@ -3,7 +3,7 @@
       
       <div class="d-flex align-items-center">
         <img src="https://i.imgur.com/Mn3W7Pq.jpg" alt="foto do usuário" width="50px" height="50px" class="img-fluid rounded-circle">
-        <p style="color: aliceblue;" class="m-0 p-1 fs-16">Nome do usuário</p>
+        <p style="color: aliceblue;" class="m-0 p-1 fs-16">{{nome}}</p>
       </div> 
 
       <p class="m-0 pe-5 text-white font-weight-bold fixed-center fs-16">Metaway</p>
@@ -17,22 +17,22 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" data-bs-dismiss="offcanvas" href="#">Home</a>
+              <a class="nav-link" aria-current="page" data-bs-dismiss="offcanvas" routerLink="/inicio">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-dismiss="offcanvas" href="#">Meu cadastro</a>
+              <a class="nav-link" data-bs-dismiss="offcanvas" href="#" routerLink="/perfil">Meu cadastro</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/cadastrar" data-bs-dismiss="offcanvas">Usuários</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-dismiss="offcanvas" href="#">Pessoas</a>
+                <a class="nav-link" data-bs-dismiss="offcanvas" routerLink="/pessoas">Pessoas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-dismiss="offcanvas" href="#">Contatos</a>
+                <a class="nav-link" data-bs-dismiss="offcanvas" routerLink="/contatos">Contatos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-dismiss="offcanvas" href="#">Logout</a>
+                <a class="nav-link" data-bs-dismiss="offcanvas" (click)="sair()">Logout</a>
             </li>            
           </ul>         
         </div>
