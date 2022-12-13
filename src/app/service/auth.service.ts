@@ -16,11 +16,7 @@ export class AuthService {
 
   entrar(loginRequest: LoginRequest) {
     return this.http.post<AuthResponse>('https://metawaydemo.vps-kinghost.net:8485/api/auth/login', loginRequest)    
-  }
-
-  cadastrar(usuarioTiposResponse: UsuarioTiposResponse):Observable<UsuarioTiposResponse> {    
-    return this.http.post<UsuarioTiposResponse>('https://metawaydemo.vps-kinghost.net:8485/api/usuario/salvar', usuarioTiposResponse)    
-  }
+  }  
 
   logado() {
     let ok: boolean = false

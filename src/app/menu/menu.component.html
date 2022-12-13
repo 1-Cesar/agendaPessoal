@@ -16,23 +16,23 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>        
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" data-bs-dismiss="offcanvas" routerLink="/inicio">Home</a>
+            <li class="nav-item active">
+              <button class="btn btn-success" routerLink="/inicio" data-bs-dismiss="offcanvas">Home</button>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-dismiss="offcanvas" href="#" routerLink="/perfil">Meu cadastro</a>
+              <button class="btn btn-success" routerLink="/cadastrar" data-bs-dismiss="offcanvas">Meu Cadastro</button>
+            </li>
+            <li class="nav-item">                
+                <button class="btn btn-success" routerLink="/cadastrar" data-bs-dismiss="offcanvas">Usuários</button> 
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/cadastrar" data-bs-dismiss="offcanvas">Usuários</a>
+              <button class="btn btn-success" routerLink="/pessoas" data-bs-dismiss="offcanvas">Pessoas</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-dismiss="offcanvas" routerLink="/pessoas">Pessoas</a>
+              <button class="btn btn-success" routerLink="/contatos" data-bs-dismiss="offcanvas">Contatos</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-dismiss="offcanvas" routerLink="/contatos">Contatos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-dismiss="offcanvas" (click)="sair()">Logout</a>
+              <button class="btn btn-danger" routerLink="/entrar" data-bs-dismiss="offcanvas" (click)="sair()">Logout</button>
             </li>            
           </ul>         
         </div>
