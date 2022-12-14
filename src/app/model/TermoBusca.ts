@@ -1,3 +1,3 @@
 export class TermoBusca {
-    public termo: string
+    public termo: string = ""
 }

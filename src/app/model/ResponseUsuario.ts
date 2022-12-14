@@ -2,5 +2,5 @@ import { Usuario } from './Usuario';
 
 export class ResponseUsuario {
     public message: string
-    public object: Usuario
+    public object: Usuario = new Usuario()
 }

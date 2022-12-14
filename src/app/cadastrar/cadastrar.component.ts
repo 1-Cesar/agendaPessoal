@@ -1,11 +1,12 @@
 import { ResponseUsuarioTiposResponse } from './../model/ResponseUsuarioTiposResponse';
-import { CadastrarService } from './../service/cadastrar.service';
+import { UsuarioService } from '../service/usuarios.service';
 import { UsuarioTiposResponse } from './../model/UsuarioTiposResponse';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { formatCurrency } from '@angular/common';
-
+import { UsuariosComponent } from '../usuarios/usuarios.component';
+import { NONE_TYPE } from '@angular/compiler';
 
 @Component({
   selector: 'app-cadastrar',
@@ -15,11 +16,11 @@ import { formatCurrency } from '@angular/common';
 export class CadastrarComponent implements OnInit {
   
   usuarioTiposResponse: UsuarioTiposResponse = new UsuarioTiposResponse();
-  responseUsuarioTiposResponse: ResponseUsuarioTiposResponse = new ResponseUsuarioTiposResponse();
+  responseUsuarioTiposResponse: ResponseUsuarioTiposResponse = new ResponseUsuarioTiposResponse();  
   confirmSenha: string
   tipoUser: string[]
 
-  constructor(private cadastrarService: CadastrarService, private router: Router) { }
+  constructor(private usuarioService: UsuarioService, private router: Router) {   }
 
   ngOnInit()  {
     window.scroll(0,0)
@@ -41,16 +42,18 @@ export class CadastrarComponent implements OnInit {
     } else {
       console.log(this.usuarioTiposResponse)
       console.log(this.usuarioTiposResponse.tipos)
-      this.cadastrarService.cadastrar(this.usuarioTiposResponse).subscribe((resp: ResponseUsuarioTiposResponse) => {
+      this.usuarioService.cadastrar(this.usuarioTiposResponse).subscribe((resp: ResponseUsuarioTiposResponse) => {
         this.responseUsuarioTiposResponse = resp  
         
         this.router.navigate(['/inicio'])
         alert("Usuário cadastrado com sucesso!")
 
-        
+        this.usuarioTiposResponse = new UsuarioTiposResponse()
       })
     }
   }
+
+  
 }
 
 
