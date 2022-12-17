@@ -1,3 +1,5 @@
+import { PessoasDeleteComponent } from './delete/pessoas-delete/pessoas-delete.component';
+import { PessoasComponent } from './pessoas/pessoas.component';
 import { AlterarComponent } from './alterar/alterar.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -12,7 +14,9 @@ const routes: Routes = [
   {path: 'cadastrar', component:CadastrarComponent},
   {path: 'inicio', component:InicioComponent},
   {path: 'usuarios', component:UsuariosComponent},
-  {path: 'alterar', component:AlterarComponent}
+  {path: 'alterar', component:AlterarComponent},
+  {path: 'pessoas', component:PessoasComponent},
+  {path: 'pessoas-delete/:id', component:PessoasDeleteComponent}  
 ];
 
 @NgModule({

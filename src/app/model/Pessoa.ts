@@ -5,6 +5,5 @@ export class Pessoa {
     public cpf: string
     public id: number
     public nome: string
-    public endereco: Endereco
-    public foto: Foto
+    public endereco: Endereco = new Endereco()    
 }

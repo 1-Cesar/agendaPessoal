@@ -70,7 +70,6 @@ export class UsuariosComponent {
     }
 
     alterarCadastro() {
-
       this.usuario.nome = this.responseUsuarioTipoResponse.object.usuario.nome
       this.usuario.cpf = this.responseUsuarioTipoResponse.object.usuario.cpf
       this.usuario.dataNascimento = this.responseUsuarioTipoResponse.object.usuario.dataNascimento

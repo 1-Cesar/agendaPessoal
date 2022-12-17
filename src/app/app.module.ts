@@ -13,6 +13,8 @@ import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { AlterarComponent } from './alterar/alterar.component';
+import { PessoasComponent } from './pessoas/pessoas.component';
+import { PessoasDeleteComponent } from './delete/pessoas-delete/pessoas-delete.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { AlterarComponent } from './alterar/alterar.component';
     CadastrarComponent,
     InicioComponent,
     UsuariosComponent,
-    AlterarComponent
+    AlterarComponent,
+    PessoasComponent,    
+    PessoasDeleteComponent
   ],
   imports: [
     BrowserModule,
