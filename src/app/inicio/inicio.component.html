@@ -1,0 +1,347 @@
+<div class="container-fluid mt-5 p-5">
+    <div class="row">
+        <div class="container">
+            <h1 class="m-0 p-0">Seja bem-vindo(a)!</h1>
+            <div class="row d-flex align-items-center justfy-content-center">
+                <div class="col-md-6 ">
+                    <h5 class="mt-5">Contatos Favoritos!</h5>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#pessoaModal">Incluir</button>
+                    <button class="btn btn-light">Pesquisar</button>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center">
+                    <img src="https://i.imgur.com/5o4ECd4.png" alt="favorito" width="500px" height="500px" />
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row row d-flex align-items-center justfy-content-center">
+            <div class="col-md-12">
+                <h5 class="mt-5">Contatos normais!</h5>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>                            
+                            <th scope="col">Id</th>
+                            <th scope="col">Nome</th>
+                            
+                        </tr>                        
+                    </thead>
+                    <tbody *ngFor="let item of listaContatos">
+                        <ng-container *ngIf="item.usuario.nome == nome">
+                            <tr>                                
+                                <td scope="row">{{item.pessoa.id}}</td>                                                           
+                                <td scope="row">{{item.pessoa.nome}}</td>                                                               
+                                <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#pessoaModal" (click)="item.pessoa.id">Detalhes</button>
+                                <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#pessoaModal" (click)="item.pessoa.id">Lista de Contatos</button>
+                            </tr>                       
+                            
+                        </ng-container>
+
+                    </tbody>
+                </table>
+                <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#pessoaModal">Incluir</button>
+                <button class="btn btn-light">Pesquisar</button>
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-center">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--------------------------------------------Incluir Contato-------------------------------------------->
+
+<div class="modal fade" id="pessoaModal" aria-hidden="true" aria-labelledby="pessoaModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pessoaTitulo">Pessoa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" placeholder="Id do contato" />
+                </div>
+
+                <div class="form-group">
+                    <label for="cpf">CPF</label>
+                    <input type="text" class="form-control" id="cpf" placeholder="CPF do contato" />
+                </div>
+
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Nome do contato" />
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-target="#enderecoModal" data-bs-toggle="modal"
+                    data-bs-dismiss="modal">
+                    Endereço
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="enderecoModal" aria-hidden="true" aria-labelledby="enderecoModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="enderecoTitulo">Endereço</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="bairro">Bairro</label>
+                    <input type="text" class="form-control" id="bairro" placeholder="Bairro do contato" [(ngModel)]="responseContato.object.pessoa.endereco.bairro"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="cep">CEP</label>
+                    <input type="text" class="form-control" id="cep" placeholder="CEP do contato" [(ngModel)]="responseContato.object.pessoa.endereco.cep"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" class="form-control" id="cidade" placeholder="Cidade do contato" [(ngModel)]="responseContato.object.pessoa.endereco.cidade"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="estado">Estado</label>
+                    <input type="text" class="form-control" id="estado" placeholder="Estado do contato" [(ngModel)]="responseContato.object.pessoa.endereco.estado"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="logradouro">Logradouro</label>
+                    <input type="text" class="form-control" id="logradouro" placeholder="Logradouro do contato" [(ngModel)]="responseContato.object.pessoa.endereco.logradouro"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="numero">Número</label>
+                    <input type="text" class="form-control" id="numero" placeholder="Número do contato" [(ngModel)]="responseContato.object.pessoa.endereco.numero"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="pais">País</label>
+                    <input type="text" class="form-control" id="pais" placeholder="País do contato" [(ngModel)]="responseContato.object.pessoa.endereco.pais"/>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-target="#fotoModal" data-bs-toggle="modal"
+                    data-bs-dismiss="modal">
+                    Foto
+                </button>
+                <button class="btn btn-primary" data-bs-target="#pessoaModal" data-bs-toggle="modal"
+                    data-bs-dismiss="modal">
+                    Voltar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="fotoModal" aria-hidden="true" aria-labelledby="fotoModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="fotoTitulo">Foto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="foto">Foto</label>
+                    <input type="text" class="form-control" id="foto" placeholder="Foto do contato">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-target="#contatoModal" data-bs-toggle="modal"
+                    data-bs-dismiss="modal">
+                    Contato
+                </button>
+                <button class="btn btn-primary" data-bs-target="#enderecoModal" data-bs-toggle="modal"
+                    data-bs-dismiss="modal">
+                    Voltar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="contatoModal" aria-hidden="true" aria-labelledby="contatoModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contatoTitulo">Contato</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="email">E-Mail</label>
+                    <input [(ngModel)]="contato.email" type="email" class="form-control" id="email" placeholder="E-Mail do contato" />
+                </div>
+
+                <div class="form-group">
+                    <label for="tag">Tag</label>
+                    <input [(ngModel)]="contato.tag" type="text" class="form-control" id="tag" placeholder="Tag do contato" />
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input [(ngModel)]="contato.telefone" type="text" class="form-control" id="telefone" placeholder="Telefone do contato" />
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo">Tipo de Contato</label>
+                    <select name="tipo" id="tipo" class="form-control" (change)="tipoContato($event)">
+                        <option>Selecione o tipo de contato</option>
+                        <option value="CELULAR">Celular</option>
+                        <option value="EMAIL">Email</option>
+                        <option value="TELEFONE">Telefone</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-dismiss="modal" (click)="postContato()">
+                    Salvar
+                </button>
+                <button class="btn btn-primary" data-bs-target="#fotoModal" data-bs-toggle="modal"
+                    data-bs-dismiss="modal">
+                    Voltar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--------------------------------------------Detalhes-------------------------------------------->
+
+<div class="modal fade" id="pessoaDetalhesModal" aria-hidden="true" aria-labelledby="pessoaDetalhesModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pessoaTitulo">Pessoa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="id">ID</label>
+                    <input [(ngModel)]="responseContato.object.pessoa.id" type="text" class="form-control" id="id" placeholder="Id do contato" />
+                </div>
+
+                <div class="form-group">
+                    <label for="cpf">CPF</label>
+                    <input [(ngModel)]="responseContato.object.pessoa.cpf" type="text" class="form-control" id="cpf" placeholder="CPF do contato" />
+                </div>
+
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input [(ngModel)]="responseContato.object.pessoa.nome" type="text" class="form-control" id="nome" placeholder="Nome do contato" />
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-target="#enderecoDetalhesModal" data-bs-toggle="modal"
+                    data-bs-dismiss="modal">
+                    Endereço
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="enderecoDetalhesModal" aria-hidden="true" aria-labelledby="enderecoDetalhesModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="enderecoTitulo">Endereço</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="bairro">Bairro</label>
+                    <input [(ngModel)]="responseContato.object.pessoa.endereco.bairro" type="text" class="form-control" id="bairro" placeholder="Bairro do contato" readonly/>
+                </div>
+
+                <div class="form-group">
+                    <label for="cep">CEP</label>
+                    <input [(ngModel)]="responseContato.object.pessoa.endereco.cep" type="text" class="form-control" id="cep" placeholder="CEP do contato" readonly/>
+                </div>
+
+                <div class="form-group">
+                    <label for="cidade">Cidade</label>
+                    <input [(ngModel)]="responseContato.object.pessoa.endereco.cidade" type="text" class="form-control" id="cidade" placeholder="Cidade do contato" readonly/>
+                </div>
+
+                <div class="form-group">
+                    <label for="estado">Estado</label>
+                    <input [(ngModel)]="responseContato.object.pessoa.endereco.estado" type="text" class="form-control" id="estado" placeholder="Estado do contato" readonly/>
+                </div>
+
+                <div class="form-group">
+                    <label for="logradouro">Logradouro</label>
+                    <input [(ngModel)]="responseContato.object.pessoa.endereco.logradouro" type="text" class="form-control" id="logradouro" placeholder="Logradouro do contato" readonly/>
+                </div>
+
+                <div class="form-group">
+                    <label for="numero">Número</label>
+                    <input [(ngModel)]="responseContato.object.pessoa.endereco.numero" type="text" class="form-control" id="numero" placeholder="Número do contato" readonly/>
+                </div>
+
+                <div class="form-group">
+                    <label for="pais">País</label>
+                    <input [(ngModel)]="responseContato.object.pessoa.endereco.pais" type="text" class="form-control" id="pais" placeholder="País do contato" readonly/>
+                </div>
+            </div>
+
+            <div class="modal-footer">               
+                <button class="btn btn-primary" data-bs-target="#pessoaDetalhesModal" data-bs-toggle="modal"
+                    data-bs-dismiss="modal">
+                    Pessoa
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

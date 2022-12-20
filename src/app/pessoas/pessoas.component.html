@@ -1,0 +1,140 @@
+<div class="container mt-5 p-5">
+    <div class="row row d-flex align-items-center justfy-content-center">
+        <div class="col-md-12">                   
+               
+            <h5 class="mt-5">Lista de Pessoas</h5>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listaPessoa">                                               
+                        <ng-container>
+                            <th>{{item.id}}</th>                                                      
+                            <td>{{item.nome}}</td>                                                        
+                            <td class="d-flex justify-content-end">
+                                <img [src]='this.image' alt="Imagem da Pessoa" width="50px" height="50px" class="img-fluid rounded-circle">                                 
+                                <button style="background-color: red;" class="btn btn-danger m-1" [routerLink]="['/pessoas-delete', item.id]"><i
+                                        class="fa fa-times" aria-hidden="true"></i></button>
+                                <button class="btn btn-info m-1" [routerLink]="['/pessoa-put', item.id]"><i
+                                        class="fa fa-pencil-square" aria-hidden="true"></i></button>
+                                <button class="btn btn-info m-1" data-bs-toggle="modal" data-bs-target="#usuarioModal"
+                                    (click)="findById(item.id)">Detalhes da Pessoa</button>
+                            </td>
+                        </ng-container>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button class="btn btn-info m-1" routerLink="/pessoa-post">Cadastrar uma Pessoa</button>
+
+            <div class="form-group mt-3">
+                <label for="pesquisa">Pesquisa</label>
+                <input [(ngModel)]="termoBuscaPessoa.nome" class="form-control" type="text" name="pesquisa"
+                    id="pesquisa" placeholder="Nome para pesquisa">
+
+                <button class="btn btn-success mt-3" type="submit" (click)="findAllPessoas()">Pesquisar</button>
+            </div>
+            <hr>
+        </div>
+    </div>
+
+    <div class="modal fade" id="pessoaModal" aria-hidden="true" aria-labelledby="pessoaModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pessoaTitulo">Detalhes da Pessoa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="id">ID</label>
+                        <input [(ngModel)]="responsePessoa.object.id" type="text" class="form-control" id="id" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input [(ngModel)]="responsePessoa.object.nome" type="text" class="form-control" id="nome" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cpf">CPF</label>
+                        <input [(ngModel)]="responsePessoa.object.cpf" type="text" class="form-control" id="cpf" />
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#enderecoModal" data-bs-toggle="modal"
+                        data-bs-dismiss="modal">
+                        Endereço
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="enderecoModal" aria-hidden="true" aria-labelledby="enderecoModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="enderecoTitulo">Detalhes do Endereço da Pessoa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="bairro">Bairro</label>
+                        <input [(ngModel)]="responsePessoa.object.endereco.bairro" type="text" class="form-control"
+                            id="bairro" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cep">CEP</label>
+                        <input [(ngModel)]="responsePessoa.object.endereco.cep" type="text" class="form-control"
+                            id="cep" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cidade">Cidade</label>
+                        <input [(ngModel)]="responsePessoa.object.endereco.cidade" type="text" class="form-control"
+                            id="cidade" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <input [(ngModel)]="responsePessoa.object.endereco.estado" type="text" class="form-control"
+                            id="estado" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="logradouro">Logradouro</label>
+                        <input [(ngModel)]="responsePessoa.object.endereco.logradouro" type="text" class="form-control"
+                            id="logradouro" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numero">Número</label>
+                        <input [(ngModel)]="responsePessoa.object.endereco.numero" type="text" class="form-control"
+                            id="numero" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pais">País</label>
+                        <input [(ngModel)]="responsePessoa.object.endereco.pais" type="text" class="form-control"
+                            id="pais" />
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#pessoaModal" data-bs-toggle="modal"
+                        data-bs-dismiss="modal">
+                        Pessoa
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>

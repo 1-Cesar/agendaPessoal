@@ -1,0 +1,21 @@
+.social-network {
+    list-style-type: none;
+    
+    li {
+        font-size: 35pt;
+        display: inline;        
+        padding: 10px;
+
+        a {
+            color: #ffffff;
+        }
+
+        .fa-book:hover {
+            color: #114e11;
+        }
+
+        .fa-github:hover {
+            color: #171515;
+        }
+    }
+}

@@ -1,0 +1,70 @@
+<div class="container mt-5 p-5">
+    
+        <div class="row row d-flex align-items-center justfy-content-center">
+            <div class="col-md-12">
+                <h5 class="mt-5">Lista de Contatos!</h5>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nome</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let item of listaContatos">
+                        <ng-container>
+                            <tr>
+                                <td scope="row">{{item.pessoa.id}}</td>
+                                <td scope="row">{{item.pessoa.nome}}</td>                                
+                                <img [src]='this.image' alt="Imagem da Pessoa" width="50px" height="50px" class="img-fluid rounded-circle">                                 
+                                <button class="btn btn-info" (click)="getAllContatosById(item.pessoa.id)">Lista de
+                                    Contatos</button>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+
+                <button class="btn btn-light" routerLink="/contato-post">Incluir Contato</button>
+
+                <div class="form-group mt-3">
+                    <label for="pesquisa">Pesquisa</label>
+                    <input [(ngModel)]="termo.termo" class="form-control" type="text" name="pesquisa" id="pesquisa"
+                        placeholder="Termo para pesquisar">
+                    <button class="btn btn-success mt-3" type="submit" (click)="getAllContatos()">Pesquisar</button>
+                </div>
+            </div>
+
+            <div class="col-md-12 d-flex justify-content-center">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id do Contato</th>
+                            <th scope="col">Proprietário do contato</th>
+
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let itemById of listaContatosById">
+                        <ng-container>
+                            <tr>
+                                <td scope="row">{{itemById.object.id}}</td>
+                                <td scope="row">{{itemById.object.pessoa.nome}}</td>
+
+                                <td scope="row">{{itemById.object.email}}</td>
+
+                                <td scope="row">{{itemById.object.tag}}</td>
+
+                                <td scope="row">{{itemById.object.telefone}}</td>
+
+                                <td scope="row">{{itemById.object.tipoContato}}</td>
+
+                                <button style="background-color: red;" class="btn btn-danger m-1"
+                                    [routerLink]="['/contato-delete', itemById.object.id]"><i class="fa fa-times"
+                                        aria-hidden="true"></i></button>
+                                <button class="btn btn-info m-1" [routerLink]="['/contato-put', itemById.object.id]"><i
+                                        class="fa fa-pencil-square" aria-hidden="true"></i></button>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
