@@ -1,7 +1,7 @@
 <div class="container mt-5 p-5">
 
   <div class="row row d-flex align-items-center justfy-content-center">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <h5 class="mt-5">Lista de Usuários</h5>
       <table class="table table-hover">
         <thead>
@@ -13,144 +13,80 @@
         <tbody>
           <tr *ngFor="let item of listaUsuario">
             <th>{{item.id}}</th>
-            <td>{{item.nome}}</td>
+            <td>{{item.nome}}</td>           
+            <button class="btn btn-info m-1" [routerLink]="['/usuario-put', item.id]"><i
+              class="fa fa-pencil-square" aria-hidden="true"></i></button>
+            <button class="btn btn-info m-1" data-bs-toggle="modal" data-bs-target="#usuarioModal" (click)="pesquisarId(item.id)">Detalhes</button>
           </tr>
         </tbody>
       </table>
-      <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#pessoaModal"
-        routerLink="/cadastrar">Incluir</button>
-      <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#pessoaModal" routerLink="/cadastrar"
-        routerLink="/alterar">Alterar</button>
+      <button class="btn btn-dark" routerLink="/usuario-post">Incluir</button>
+      <button class="btn btn-dark m-2" routerLink="/usuario-put">Alterar</button>
 
       <div class="form-group mt-3">
         <label for="pesquisa">Pesquisa</label>
         <input [(ngModel)]="termo.termo" class="form-control" type="text" name="pesquisa" id="pesquisa"
           placeholder="Termo para pesquisar">
-
         <button class="btn btn-success mt-3" type="submit" (click)="pesquisar()">Pesquisar</button>
       </div>
 
       <hr>
-      <h5 class="mt-5">Usuário por Id</h5>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nome</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>{{responseUsuarioTipoResponse.object.usuario.id}}</th>
-            <td>{{responseUsuarioTipoResponse.object.usuario.nome}}</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="form-group mt-3">
-        <label for="pesquisaId">Pesquisar por Id</label>
-        <input [(ngModel)]="id" class="form-control" type="text" name="pesquisaId" id="pesquisaId"
-          placeholder="Id para pesquisar">
-
-        <button class="btn btn-success mt-3" type="submit" (click)="pesquisarId()">Pesquisar</button>
-      </div>
-      <hr>
-      <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#senhaModal">Alterar Minha Senha</button>
-      <button class="btn btn-info m-2" data-bs-toggle="modal" data-bs-target="#alterarModal" (click)="pegarUsuarioLogado()">Alterar Meu
-        Cadastro</button>
-    </div>
-
-    <div class="col-md-6 d-flex justify-content-center">
-      <img src="https://i.imgur.com/WXe82Ii.png" alt="contato" width="500px" height="500px" />
+            
     </div>
   </div>
 
 </div>
 
-<div class="modal fade" id="senhaModal" aria-hidden="true" aria-labelledby="senhaModal" tabindex="-1">
+<div class="modal fade" id="usuarioModal" aria-hidden="true" aria-labelledby="usuarioModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="senhaTitulo">Alterar Senha</h5>
+        <h5 class="modal-title" id="pessoaTitulo">Detalhes do Usuário</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">
-        <div class="form-group">
-          <label for="novaSenha">Nova Senha</label>
-          <input [(ngModel)]="comando.newPassword" type="password" class="form-control" id="novaSenha"
-            placeholder="Digita sua nova senha" />
-        </div>
-
-        <div class="form-group">
-          <label for="senhaAtual">Senha Atual</label>
-          <input [(ngModel)]="comando.password" type="password" class="form-control" id="senhaAtual"
-            placeholder="Digite sua senha atual" />
-        </div>
-
-        <div class="form-group">
-          <label for="usuario">Usuário</label>
-          <input [(ngModel)]="comando.username" type="text" class="form-control" id="usuario"
-            placeholder="Digite seu usuário" />
-        </div>
-      </div>
-
-      <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-toggle="modal" type="submit" (click)="alterarSenha()"
-          data-bs-dismiss="modal">
-          Alterar Senha
-        </button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="alterarModal" aria-hidden="true" aria-labelledby="alterarModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="senhaTitulo">Alterar meu Cadastro</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="cpf">CPF</label>
-          <input [(ngModel)]="responseUsuarioTipoResponse.object.usuario.cpf" type="text" class="form-control" id="cpf" />
-        </div>
-
-        <div class="form-group">
-          <label for="dataNascimento">Data de Nascimento</label>
-          <input [(ngModel)]="responseUsuarioTipoResponse.object.usuario.dataNascimento" type="date" class="form-control" id="dataNascimento" />
-        </div>
-
-        <div class="form-group">
-          <label for="email">E-Mail</label>
-          <input [(ngModel)]="responseUsuarioTipoResponse.object.usuario.email" type="text" class="form-control" id="email" />
-        </div>
-
         <div class="form-group">
           <label for="id">ID</label>
-          <input [(ngModel)]="responseUsuarioTipoResponse.object.usuario.id" type="text" class="form-control" id="id" />
+          <input [(ngModel)]="responseUsuarioTipoResponse.object.usuario.id" type="text" class="form-control" id="id" readonly/>
         </div>
 
         <div class="form-group">
           <label for="nome">Nome</label>
-          <input [(ngModel)]="responseUsuarioTipoResponse.object.usuario.nome" type="text" class="form-control" id="nome" />
+          <input [(ngModel)]="responseUsuarioTipoResponse.object.usuario.nome" type="text" class="form-control"
+            id="nome" readonly/>
+        </div>
+
+        <div class="form-group">
+          <label for="cpf">CPF</label>
+          <input [(ngModel)]="responseUsuarioTipoResponse.object.usuario.cpf" type="text" class="form-control"
+            id="cpf" readonly/>
+        </div>
+
+        <div class="form-group">
+          <label for="dataNascimento">Data de Nascimento</label>
+          <input [(ngModel)]="responseUsuarioTipoResponse.object.usuario.dataNascimento" type="date"
+            class="form-control" id="dataNascimento" readonly/>
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-Mail</label>
+          <input [(ngModel)]="responseUsuarioTipoResponse.object.usuario.email" type="email" class="form-control"
+            id="email" readonly/>
         </div>
 
         <div class="form-group">
           <label for="telefone">Telefone</label>
-          <input [(ngModel)]="responseUsuarioTipoResponse.object.usuario.telefone" type="text" class="form-control" id="telefone" />
+          <input [(ngModel)]="responseUsuarioTipoResponse.object.usuario.telefone" type="text" class="form-control"
+            id="telefone" readonly/>
         </div>
-      </div>
 
-      <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-toggle="modal" type="submit" (click)="alterarCadastro()"
-          data-bs-dismiss="modal">
-          Alterar meu Cadastro
-        </button>
-      </div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input [(ngModel)]="responseUsuarioTipoResponse.object.usuario.username" type="text" class="form-control"
+            id="username" readonly/>
+        </div>
+      </div>      
     </div>
   </div>
 </div>

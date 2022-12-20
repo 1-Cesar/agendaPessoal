@@ -1,3 +1,4 @@
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Foto } from './../model/Foto';
 import { ResponseFoto } from './../model/ResponseFoto';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -5,9 +6,10 @@ import { ResponsePessoa } from './../model/ResponsePessoa';
 import { Pessoa } from './../model/Pessoa';
 import { TermoBuscaPessoa } from './../model/TermoBuscaPessoa';
 import { PessoasService } from './../service/pessoas.service';
-import { Component } from '@angular/core';
+import { Component, Sanitizer } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
+
 
 @Component({
   selector: 'app-pessoas',
@@ -16,83 +18,47 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class PessoasComponent {
 
-  id: number;  
+   
+  nome: string
+  idFoto: number
   listaPessoa: Pessoa[];
   termoBuscaPessoa: TermoBuscaPessoa = new TermoBuscaPessoa();
-  responsePessoa: ResponsePessoa = new ResponsePessoa();
-  responseFoto: ResponseFoto = new ResponseFoto();
+  responsePessoa: ResponsePessoa = new ResponsePessoa(); 
   pessoa: Pessoa = new Pessoa();
-  foto: Foto = new Foto();
-
-
+  image: any;  
+  
   constructor(    
-    private pessoaService: PessoasService,  
-    private http: HttpClient  
+    private pessoaService: PessoasService,
+    private sanitizer: DomSanitizer,      
     ) {}
 
     ngOnInit() {
-      window.scroll(0, 0)     
-
-      this.findAllPessoas()
+      window.scroll(0, 0)
+        
+      this.findAllPessoas()                             
     } 
     
-    findAllPessoas() {
+    findAllPessoas() {            
+      this.nome = environment.nome
       this.pessoaService.getAllPessoas(this.termoBuscaPessoa).subscribe((resp: Pessoa[]) => {
         this.listaPessoa = resp
-      })
+        for (let item of this.listaPessoa) {
+          this.getPhoto(item.id)
+        }        
+      })       
     }
 
-    findById() {
-      this.pessoaService.getById(this.id).subscribe((resp: ResponsePessoa) => {
+    findById(id: number) {
+      this.pessoaService.getById(id).subscribe((resp: ResponsePessoa) => {
         this.responsePessoa = resp
         console.log(this.responsePessoa)
       })
     }
-
-    deletePessoa() {
-
-    }
-
-    putPessoa() {
-      
-    }
-
-    postPessoa() {
-
-      
-
-      this.pessoaService.postPessoa(this.pessoa).subscribe((resp: ResponsePessoa) => {
-        this.responsePessoa = resp
-      })
-
-      
-
-      console.log(this.pessoa)
-      console.log(this.responsePessoa)
-
-      alert("Pessoa cadastrada com sucesso!")
-
-      this.pessoa = new Pessoa()
-    }  
     
-    token = {
-      headers: new HttpHeaders().set('Authorization', "Bearer " + environment.token)
-    }
-
-    inputFileChange(event: any) {
-      if (event.target.files && event.target.files[0]) {
-        const foto = event.target.files[0];        
-  
-        const formData = new FormData();
-        formData.append('foto', foto)
-
-        let id = this.foto.id        
-  
-        this.pessoaService.postFoto(formData, id).subscribe((resp: ResponseFoto) => {
-          this.responseFoto = resp
-       })
-      }
-      console.log(this.responseFoto)
-      alert(this.responseFoto.message)
+    getPhoto(id: number) {
+      this.pessoaService.getFoto(id).subscribe(blob => {
+        let objectURL = URL.createObjectURL(blob);
+        this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);          
+      })
     }
 }

@@ -8,6 +8,6 @@ export class Contato {
     public tag: string
     public telefone: string
     public tipoContato: string
-    public pessoa: Pessoa
-    public usuario: Usuario
+    public pessoa: Pessoa = new Pessoa()
+    public usuario: Usuario = new Usuario()
 }

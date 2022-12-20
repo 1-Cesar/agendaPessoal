@@ -28,6 +28,10 @@ export class UsuarioService {
     return this.http.post<ResponseUsuarioTiposResponse>('https://metawaydemo.vps-kinghost.net:8485/api/usuario/salvar', usuarioTiposResponse, this.token)    
   }
 
+  putUsuario(usuario: Usuario) {    
+    return this.http.put<ResponseUsuario>('https://metawaydemo.vps-kinghost.net:8485/api/usuario/atualizar', usuario, this.token)    
+  }
+
   getAllUsuarios(termo: TermoBusca): Observable<Usuario[]> {    
     return this.http.post<Usuario[]>('https://metawaydemo.vps-kinghost.net:8485/api/usuario/pesquisar', termo, this.token)
   }  

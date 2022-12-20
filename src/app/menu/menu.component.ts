@@ -10,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  nome = environment.nome  
+  id = environment.id
+  nome = environment.nome
+  tipo = environment.tipo  
 
   constructor(private router: Router) {}
 
