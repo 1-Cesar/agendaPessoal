@@ -1,3 +1,4 @@
+import { ResponseUsuario } from 'src/app/model/ResponseUsuario';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Contato } from 'src/app/model/Contato';
@@ -13,7 +14,7 @@ import { environment } from 'src/environments/environment.prod';
 export class ContatoPutComponent {
      
   idContato: number
-  listaContato: ResponseContato[]
+  listaContato: Contato[]
   contato: Contato = new Contato();
   responseContato: ResponseContato = new ResponseContato();
   tipoContact: string
@@ -38,8 +39,8 @@ export class ContatoPutComponent {
   }
 
   findByIdContato(id: number) {
-    this.contatoService.getById(id).subscribe((resp: Contato) => {
-      this.contato = resp
+    this.contatoService.getAllContatosById(id).subscribe((resp: Contato[]) => {
+      this.listaContato = resp
 
       console.log(this.contato)
     })

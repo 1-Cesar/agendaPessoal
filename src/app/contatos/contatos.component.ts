@@ -19,7 +19,7 @@ export class ContatosComponent {
   id: number;
   image: any
   listaContatos: Contato[];
-  listaContatosById: ResponseContato[];
+  listaContatosById: Contato[];
   termo: TermoBusca = new TermoBusca();
   contato: Contato = new Contato();
   responseContato: ResponseContato = new ResponseContato();
@@ -60,7 +60,7 @@ export class ContatosComponent {
 
   getAllContatosById(id: number) {
     this.nome = environment.nome
-    this.contatoService.getAllContatosById(id).subscribe((resp: ResponseContato[]) => {
+    this.contatoService.getAllContatosById(id).subscribe((resp: Contato[]) => {
       this.listaContatosById = resp
     })
   }
@@ -74,8 +74,8 @@ export class ContatosComponent {
   }
 
   getByIdContato(id: number) {
-    this.contatoService.getById(id).subscribe((resp: Contato) => {
-      this.contato = resp
+    this.contatoService.getById(id).subscribe((resp: ResponseContato) => {
+      this.responseContato = resp
     })
 
     alert("Contato criado com sucesso!")

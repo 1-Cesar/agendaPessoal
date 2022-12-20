@@ -55,12 +55,12 @@
                         </tr>                        
                     </thead>
                     <tbody *ngFor="let item of listaContatos">
-                        <ng-container *ngIf="item.usuario.nome == nome">
+                        <ng-container>
                             <tr>                                
-                                <td scope="row">{{item.pessoa.id}}</td>                                                           
-                                <td scope="row">{{item.pessoa.nome}}</td>                                                               
-                                <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#pessoaModal" (click)="item.pessoa.id">Detalhes</button>
-                                <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#pessoaModal" (click)="item.pessoa.id">Lista de Contatos</button>
+                                <td scope="row"></td>                                                           
+                                <td scope="row"></td>                                                               
+                                <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#pessoaModal" >Detalhes</button>
+                                <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#pessoaModal" >Lista de Contatos</button>
                             </tr>                       
                             
                         </ng-container>

@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment.prod';
 export class ContatoDeleteComponent {
 
   contato: Contato = new Contato();
-  listaContato: ResponseContato[];
+  listaContato: Contato[];
   responseContato: ResponseContato = new ResponseContato();
   responseBoolean: ResponseBoolean = new ResponseBoolean();
   idContato: number
@@ -36,7 +36,7 @@ export class ContatoDeleteComponent {
   
 
   findByIdContato(id: number) {
-    this.contatoService.getAllContatosById(id).subscribe((resp: ResponseContato[]) => {
+    this.contatoService.getAllContatosById(id).subscribe((resp: Contato[]) => {
       this.listaContato = resp
 
       console.log(this.listaContato)

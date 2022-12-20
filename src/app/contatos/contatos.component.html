@@ -45,21 +45,21 @@
                     <tbody *ngFor="let itemById of listaContatosById">
                         <ng-container>
                             <tr>
-                                <td scope="row">{{itemById.object.id}}</td>
-                                <td scope="row">{{itemById.object.pessoa.nome}}</td>
+                                <td scope="row">{{itemById.id}}</td>
+                                <td scope="row">{{itemById.pessoa.nome}}</td>
 
-                                <td scope="row">{{itemById.object.email}}</td>
+                                <td scope="row">{{itemById.email}}</td>
 
-                                <td scope="row">{{itemById.object.tag}}</td>
+                                <td scope="row">{{itemById.tag}}</td>
 
-                                <td scope="row">{{itemById.object.telefone}}</td>
+                                <td scope="row">{{itemById.telefone}}</td>
 
-                                <td scope="row">{{itemById.object.tipoContato}}</td>
+                                <td scope="row">{{itemById.tipoContato}}</td>
 
                                 <button style="background-color: red;" class="btn btn-danger m-1"
-                                    [routerLink]="['/contato-delete', itemById.object.id]"><i class="fa fa-times"
+                                    [routerLink]="['/contato-delete', itemById.id]"><i class="fa fa-times"
                                         aria-hidden="true"></i></button>
-                                <button class="btn btn-info m-1" [routerLink]="['/contato-put', itemById.object.id]"><i
+                                <button class="btn btn-info m-1" [routerLink]="['/contato-put', itemById.id]"><i
                                         class="fa fa-pencil-square" aria-hidden="true"></i></button>
                             </tr>
                         </ng-container>

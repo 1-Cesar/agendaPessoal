@@ -74,8 +74,8 @@ export class InicioComponent implements OnInit {
   }
 
   getByIdContato(id: number) {
-    this.contatoService.getById(id).subscribe((resp: Contato) => {
-      this.contato = resp
+    this.contatoService.getById(id).subscribe((resp: ResponseContato) => {
+      this.responseContato = resp
     })
 
     alert("Contato criado com sucesso!")

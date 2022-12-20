@@ -22,12 +22,12 @@ export class ContatosService {
     return this.http.post<Contato[]>('https://metawaydemo.vps-kinghost.net:8485/api/contato/pesquisar', termo, this.token)
   }
 
-  getAllContatosById(id: number): Observable<ResponseContato[]> {
-    return this.http.get<ResponseContato[]>(`https://metawaydemo.vps-kinghost.net:8485/api/contato/listar/${id}`, this.token)
+  getAllContatosById(id: number): Observable<Contato[]> {
+    return this.http.get<Contato[]>(`https://metawaydemo.vps-kinghost.net:8485/api/contato/listar/${id}`, this.token)
   }
 
   getById(id: number) {
-    return this.http.get<Contato>(`https://metawaydemo.vps-kinghost.net:8485/api/contato/listar/${id}`, this.token)
+    return this.http.get<ResponseContato>(`https://metawaydemo.vps-kinghost.net:8485/api/contato/listar/${id}`, this.token)
   }
 
   deleteById(id: number) {
